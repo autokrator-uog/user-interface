@@ -23,4 +23,4 @@ Elements.propTypes = {
    status: PropTypes.string
 }
 
-export default TransactionsListEl;
+export default Elements;
