@@ -7,8 +7,8 @@ class Footer extends Component {
   render(){
     return(
       <div>
-        <div>
-          <Segment inverted vertical style={{ margin: '5em 25em 5em', padding: '2em 0em', bottom: 0 }}>
+        <Container>
+          <Segment inverted vertical style={{  marginTop: '7em', padding: '2em 0em', bottom: 0 }}>
             <Container textAlign='center'>
             <Image centered size='small' src={ Logo }/>
               <Divider inverted section />
@@ -20,7 +20,7 @@ class Footer extends Component {
               </List>
             </Container>
           </Segment>
-        </div>
+        </Container>
       </div>
 
     );
