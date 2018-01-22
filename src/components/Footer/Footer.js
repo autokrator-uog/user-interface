@@ -7,7 +7,7 @@ class Footer extends Component {
   render(){
     return(
       <div>
-        <div class="Footer">
+        <div>
           <Segment inverted vertical style={{ margin: '5em 25em 5em', padding: '2em 0em', bottom: 0 }}>
             <Container textAlign='center'>
             <Image centered size='small' src={ Logo }/>
