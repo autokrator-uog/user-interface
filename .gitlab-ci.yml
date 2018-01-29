@@ -1,0 +1,8 @@
+stages:
+  - test
+
+test:
+  image: node:8
+  script:
+    - npm install
+    - CI=1 npm test

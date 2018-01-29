@@ -1,3 +1,4 @@
+import WebSocket from 'ws';
 
 import { BFAF_BASE_URL } from '../bfaf';
 
