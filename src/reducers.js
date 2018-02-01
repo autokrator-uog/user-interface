@@ -6,12 +6,16 @@ import { initSuccessReducer, initFailReducer } from './actions/init';
 import { WEBSOCKET_INIT_SUCCESS, WEBSOCKET_MESSAGE_RECEIVED } from './actions/websocket';
 import { websocketInitSuccessReducer, websocketMessageReceivedReducer } from './actions/websocket';
 
+import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions';
+
 
 const initialState = fromJS({
     username: null,
     
     accounts: [],
     currentlySelectedAccountIdx: -1,
+    
+    pendingTransactions: [],
     
     websocketConnection: null,
     errors: []
@@ -39,10 +43,14 @@ function appReducers(state, action) {
     case WEBSOCKET_MESSAGE_RECEIVED:
       return websocketMessageReceivedReducer(state, action);
     
+    case TRANSACTION_SUBMITTED:
+      return state.update("pendingTransactions", list => list.push(action.transaction_info));
+    case TRANSACTION_ERROR:
+      return state.update("errors", list => list.push(action.error));
     
     default:
       console.info(`Received action of un-handled type ${action.type}. Ignoring...`, action);
-      return state
+      return state;
   }
 }
 

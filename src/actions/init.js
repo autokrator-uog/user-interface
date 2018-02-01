@@ -28,7 +28,7 @@ export function initAccountData(username) {
                     });
                 default:
                     return dispatch({
-                        type: INIT_VALID_RESPONSE,
+                        type: INIT_INVALID_RESPONSE,
                         response: response
                     });
             }
@@ -36,7 +36,7 @@ export function initAccountData(username) {
         })
         .catch(function(error) {
             return dispatch({
-                type: INIT_VALID_RESPONSE,
+                type: INIT_INVALID_RESPONSE,
                 error: error
             });
         });
