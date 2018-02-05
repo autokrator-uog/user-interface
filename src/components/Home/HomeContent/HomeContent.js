@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Table, Divider, Header} from 'semantic-ui-react';
+import { Container, Table, Header } from 'semantic-ui-react';
 
 class HomeContent extends Component {
   render(){
