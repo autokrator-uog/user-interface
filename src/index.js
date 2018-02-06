@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import './index.css';
-
 import App from './components/App/App';
 import appReducers from './reducers';
 
-let store = createStore(appReducers, applyMiddleware(thunk));
+import './index.css';
+
+const store = createStore(
+  appReducers,
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App store={store} />
+    <App />
   </Provider>,
-document.getElementById('app'));
+  document.getElementById('app')
+);
 
 
 // why t f do we need this. Srsly?
