@@ -20,6 +20,7 @@ class HomeContent extends Component {
     return (
       <div>
         <TopContent accounts />
+        {this.state.accounts}
         <MiddleContent />
       </div>
     )
@@ -30,7 +31,7 @@ class HomeContent extends Component {
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
   return {
-    accounts: state.get('accounts')
+    accounts: JSON.stringify(state.get('accounts'))
   }
 }
 
