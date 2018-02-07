@@ -12,17 +12,17 @@ import Footer from "../Footer/Footer"
 class Home extends Component {
   constructor(props) {
       super(props);
-      
+
       this.state = {
         username: props.username
       }
       this.onLoad = props.onLoad
   }
-  
+
   componentDidMount() {
       this.onLoad(this.state.username);
   }
-  
+
   render(){
 
     return(
@@ -46,7 +46,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLoad: username => {
-      dispatch(initAccountData(username));
+      //dispatch(initAccountData(username));
     }
   }
 }

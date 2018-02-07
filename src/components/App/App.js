@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Redirect, IndexRoute} from 'react-router-dom'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import HomeView from "../Home/Home"
 import LoginView from "../Login/Login"
-
-import { initAccountData } from '../../actions/init';
-import { initWebsocketConnection } from '../../actions/websocket';
 
 class App extends Component {
 

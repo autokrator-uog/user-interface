@@ -13,7 +13,7 @@ class Login extends Component {
         username: props.username || "",
         password: props.password || ""
       };
-      
+
       this.onUsernameInput = props.onUsernameInput;
       this.onPassowrdInput = props.onPassowrdInput;
     }
@@ -24,16 +24,16 @@ class Login extends Component {
 
     handleUsernameInput = event => {
       var username = event.target.value;
-      
+
       this.setState({
         username: username
       });
       this.onUsernameInput(username);
     }
-    
+
     handlePasswordInput = event => {
       var password = event.target.value;
-      
+
       this.setState({
         password: password
       });
@@ -78,6 +78,7 @@ class Login extends Component {
       }
 }
 
+// reads from redux state and returns react props for the component
 const mapStateToProps = state => {
   return {
     username: state.get('username'),
@@ -85,6 +86,7 @@ const mapStateToProps = state => {
   }
 }
 
+// allows the component to perform actions
 const mapDispatchToProps = dispatch => {
   return {
     onUsernameInput: username => {
