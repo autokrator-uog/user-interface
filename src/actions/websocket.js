@@ -7,7 +7,7 @@ export const WEBSOCKET_MESSAGE_RECEIVED = 'WEBSOCKET_MESSAGE_RECEIVED';
 
 
 export function initWebsocketConnection(accountIds, store) {
-    var url = `ws://${BFAF_BASE_URL}/updates`;
+    var url = `ws://${BFAF_BASE_URL}/updates/`;
     console.debug(`Opening websocket connection on ${url}`);
     
     var socket = new WebSocket(url);

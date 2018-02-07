@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./Login.css";
+import { initAccountData } from "../../actions/init";
 
 
 class Login extends Component {
-    constructor(props) {
+    constructor(props, context) {
       super(props);
 
       this.state = {
@@ -16,6 +18,7 @@ class Login extends Component {
       
       this.onUsernameInput = props.onUsernameInput;
       this.onPassowrdInput = props.onPassowrdInput;
+      this.onLogin = props.onLogin;
     }
 
     validateForm() {
@@ -42,12 +45,16 @@ class Login extends Component {
 
     handleSubmit = event => {
       event.preventDefault();
+      
+      this.onLogin(this.state.username);
+      this.props.history.push('/user');
     }
 
     render() {
       return (
         <div className="Login">
           <form onSubmit={this.handleSubmit}>
+            
             <FormGroup controlId="username" bsSize="large">
               <ControlLabel>Username</ControlLabel>
               <FormControl autoFocus type="username"
@@ -55,6 +62,7 @@ class Login extends Component {
                 onChange={this.handleUsernameInput}
               />
             </FormGroup>
+            
             <FormGroup controlId="password" bsSize="large">
               <ControlLabel>Password</ControlLabel>
               <FormControl
@@ -62,20 +70,16 @@ class Login extends Component {
                 onChange={this.handlePasswordInput}
                 type="password"
               />
-            </FormGroup>
-            <Link to="user">
-              <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
-                Login
-              </Button>
-            </Link>
+          </FormGroup>
+        
+            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
+              Login
+            </Button>
+            
           </form>
         </div>
       );
     }
-
-   componentDidMount() {
-      // If user logged in, redirect to user
-      }
 }
 
 const mapStateToProps = state => {
@@ -98,6 +102,9 @@ const mapDispatchToProps = dispatch => {
         type: "PASSWORD_INPUT",
         password: password
       });
+    },
+    onLogin: username => {
+      dispatch(initAccountData(username));
     }
   }
 }
