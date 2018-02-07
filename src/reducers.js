@@ -10,10 +10,24 @@ import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions
 
 
 const initialState = fromJS({
-    username: null,
+    username: "",
+    password: "",
     
-    accounts: [],
-    currentlySelectedAccountIdx: -1,
+    accounts: [
+        {
+          "details": {
+            "balance": "1234.67"
+          },
+          "statement": [
+            {
+              "itemNo": 1,
+              "amount": "1234.67",
+              "note": "sample text"
+            }
+          ]
+        }
+    ],
+    currentlySelectedAccountIdx: 0,
     
     pendingTransactions: [],
     
@@ -30,13 +44,19 @@ function appReducers(state, action) {
   console.debug(`Processing action of type: ${action.type}`, action)
   
   switch (action.type) {
+    case "USERNAME_INPUT":
+      var newState = state.set("username", action.username);
+      console.log(newState);
+      return newState;
+    case "PASSWORD_INPUT":
+      return state.set("password", action.password);
+    
     case INIT_VALID_RESPONSE:
       return initSuccessReducer(state, action);
     case INIT_INVALID_RESPONSE:
       return initFailReducer(state, action);
     case INIT_USER_NOT_EXISTS:
-      return state.set("username", null);
-      
+      return state.set("username", "");
     
     case WEBSOCKET_INIT_SUCCESS:
       return websocketInitSuccessReducer(state, action);

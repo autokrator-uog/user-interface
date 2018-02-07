@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Redirect, IndexRoute} from 'react-router-dom'
 
-import Home from "../Home/Home"
-import Navbar from "../Navbar/Navbar"
-import Footer from "../Footer/Footer"
-import Login from "../Login/Login"
+import HomeView from "../Home/Home"
+import LoginView from "../Login/Login"
 
 import { initAccountData } from '../../actions/init';
 import { initWebsocketConnection } from '../../actions/websocket';
@@ -31,11 +29,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={Login} />
-          <Route path='/user' component={Home} />
-
-          <Route path='/user' component={Navbar} />
-          <Route path='/user' component={Footer} />
+          <Route exact path='/' component={LoginView} />
+          <Route path='/user' component={HomeView} />
         </div>
       </Router>
     );
