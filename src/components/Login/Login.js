@@ -73,9 +73,6 @@ class Login extends Component {
       );
     }
 
-   componentDidMount() {
-      // If user logged in, redirect to user
-      }
 }
 
 // reads from redux state and returns react props for the component
