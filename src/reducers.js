@@ -16,7 +16,8 @@ const initialState = fromJS({
     accounts: [
         {
           "details": {
-            "balance": "1234.67"
+            "balance": "1234.67",
+            "account_id": 1
           },
           "statement": [
             {
