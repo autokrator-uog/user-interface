@@ -24,7 +24,7 @@ class Home extends Component {
       
       this.props.startWebsocket(this.props.account_ids, this.props.store)
   }
-  
+
   render(){
     return (
       <div>
