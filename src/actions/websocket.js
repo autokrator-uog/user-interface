@@ -1,5 +1,3 @@
-import WebSocket from 'ws';
-
 import { BFAF_BASE_URL } from '../bfaf';
 
 export const WEBSOCKET_INIT_SUCCESS = 'WEBSOCKET_INIT_SUCCESS';
@@ -43,5 +41,20 @@ export function websocketInitSuccessReducer(state, action) {
 }
 
 export function websocketMessageReceivedReducer(state, action) {
+    switch(action.message.update_type) {
+        case "new_statement_item":
+            var accountIdx = state.get('accounts').findIndex(
+                (value, index, iter) => value.details.account_id == action.message.for_account_id
+            );
+            return state.update('accounts', accounts => {
+                accounts.update(accountIdx, the_account => {
+                    the_account.statement.add(action.message.data);
+                    the_account.statement.sortBy((statement_item) => statement_item.itemNo);
+                });
+            });
+        default:
+            console.log(`UNABLE TO HANDLE MESSAGE TYPE: ${action.message.update_type}`)
+            return state;
+    }
     return state
 }

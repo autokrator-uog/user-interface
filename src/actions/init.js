@@ -35,6 +35,12 @@ export function initAccountData(username) {
             
         })
         .catch(function(error) {
+            if (error.response.status === 404) {
+                return dispatch({
+                    type: INIT_USER_NOT_EXISTS
+                });
+            }
+            
             return dispatch({
                 type: INIT_INVALID_RESPONSE,
                 error: error

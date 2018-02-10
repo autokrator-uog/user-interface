@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { List } from "immutable";
 
-import { initAccountData } from "../../actions/init";
+import { initWebsocketConnection } from "../../actions/websocket";
 
 import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
@@ -10,43 +11,45 @@ import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 
 class Home extends Component {
-  constructor(props) {
-      super(props);
-
-      this.state = {
-        username: props.username
-      }
-      this.onLoad = props.onLoad
-  }
-
+  
   componentDidMount() {
-      this.onLoad(this.state.username);
+      if (this.props.username === "") {
+          this.props.history.push("/");
+          return;
+      }
+    
+      if (this.props.websocketConnection !== null) {
+          this.props.websocketConnection.close();
+      }
+      
+      this.props.startWebsocket(this.props.account_ids, this.props.store)
   }
 
   render(){
-
-    return(
+    return (
       <div>
         <Navbar />
         <HomeHeader />
         <HomeContent />
         <Footer />
       </div>
-
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-      "username": state.get('username')
+      "username": state.get('username'),
+      "websocketConnection": state.get('websocketConnection'),
+      "account_ids": state.get('accounts', List())
+                          .map(account => account.getIn(['details', 'account_id']))
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoad: username => {
-      //dispatch(initAccountData(username));
+    startWebsocket: (accountIds, store) => {
+      dispatch(initWebsocketConnection(accountIds, store));
     }
   }
 }
