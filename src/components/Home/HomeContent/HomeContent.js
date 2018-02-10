@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { List } from "immutable";
+
 import TopContent from "./TopContent/TopContent"
 import MiddleContent from "./MiddleContent/MiddleContent"
 
@@ -10,16 +12,15 @@ class HomeContent extends Component {
     super(props);
 
     this.state = {
-      accounts: props.accounts
+      balance: props.balance,
     };
   }
 
   render() {
-    console.log(this.state.accounts);
 
     return (
       <div>
-        <TopContent accounts />
+        <TopContent balance = {this.state.balance}/>
         <MiddleContent />
       </div>
     )
@@ -30,7 +31,8 @@ class HomeContent extends Component {
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
   return {
-    accounts: state.get('accounts')
+    balance: state.get('accounts', List())
+                        .map(account => account.getIn(['details', 'balance']))
   }
 }
 

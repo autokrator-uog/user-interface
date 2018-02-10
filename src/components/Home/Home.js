@@ -11,17 +11,17 @@ import Navbar from "../Navbar/Navbar"
 import Footer from "../Footer/Footer"
 
 class Home extends Component {
-  
+
   componentDidMount() {
       if (this.props.username === "") {
           this.props.history.push("/");
           return;
       }
-    
+
       if (this.props.websocketConnection !== null) {
           this.props.websocketConnection.close();
       }
-      
+
       this.props.startWebsocket(this.props.account_ids, this.props.store)
   }
 
