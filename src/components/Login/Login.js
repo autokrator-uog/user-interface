@@ -42,12 +42,22 @@ class Login extends Component {
 
     handleSubmit = event => {
       event.preventDefault();
+<<<<<<< Updated upstream
+=======
+
+      this.onLogin(this.state.username);
+      this.props.history.push('/user');
+>>>>>>> Stashed changes
     }
 
     render() {
       return (
         <div className="Login">
           <form onSubmit={this.handleSubmit}>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             <FormGroup controlId="username" bsSize="large">
               <ControlLabel>Username</ControlLabel>
               <FormControl autoFocus type="username"
@@ -55,6 +65,10 @@ class Login extends Component {
                 onChange={this.handleUsernameInput}
               />
             </FormGroup>
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             <FormGroup controlId="password" bsSize="large">
               <ControlLabel>Password</ControlLabel>
               <FormControl
@@ -62,12 +76,21 @@ class Login extends Component {
                 onChange={this.handlePasswordInput}
                 type="password"
               />
+<<<<<<< Updated upstream
             </FormGroup>
             <Link to="user">
               <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
                 Login
               </Button>
             </Link>
+=======
+          </FormGroup>
+
+            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
+              Login
+            </Button>
+
+>>>>>>> Stashed changes
           </form>
         </div>
       );

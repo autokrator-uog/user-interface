@@ -2,8 +2,23 @@ import React, { Component } from 'react';
 import { Container, Table, Header } from 'semantic-ui-react';
 
 class MiddleContent extends Component {
-  render(){
 
+
+  createTableItems(){
+    return this.props.statement.map((it) =>{
+      var item = it.toObject();
+      return(
+        <Table.Row key={item.itemNo}>
+        <Table.Cell> {item.amount} </Table.Cell>
+        <Table.Cell> {item.note} </Table.Cell>
+        </Table.Row>
+
+      )
+    })
+  }
+
+
+  render(){
     return(
       <div>
         <Container text style={{ marginTop: '2em', textAlign: 'center' }}>
@@ -22,29 +37,7 @@ class MiddleContent extends Component {
             </Table.Header>
 
             <Table.Body>
-            <Table.Row>
-              <Table.Cell>John</Table.Cell>
-              <Table.Cell>Approved</Table.Cell>
-              <Table.Cell
-                title={[
-                  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
-                  'et dolore magna aliqua.',
-                ].join(' ')}
-              >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Jamie</Table.Cell>
-              <Table.Cell>Approved</Table.Cell>
-              <Table.Cell>Shorter description</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Jill</Table.Cell>
-              <Table.Cell>Denied</Table.Cell>
-              <Table.Cell>Shorter description</Table.Cell>
-            </Table.Row>
+              {this.createTableItems()}
             </Table.Body>
           </Table>
         </Container>
