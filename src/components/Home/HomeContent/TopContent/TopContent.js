@@ -6,9 +6,6 @@ class TopContent extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-
-    };
   }
 
   render(){
@@ -22,8 +19,9 @@ class TopContent extends Component {
         </Header>
 
         <Header as='h3' floated='right'>
-          GET THE DAMN DATA
+         $ {this.props.balance}
         </Header>
+
       </Segment>
       </Container>
       </div>

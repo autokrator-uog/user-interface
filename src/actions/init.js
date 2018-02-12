@@ -37,15 +37,12 @@ export function initAccountData(username) {
 
         })
         .catch(function(error) {
-<<<<<<< Updated upstream
-=======
             if (error.response.status === 404) {
                 return dispatch({
                     type: INIT_USER_NOT_EXISTS
                 });
             }
 
->>>>>>> Stashed changes
             return dispatch({
                 type: INIT_INVALID_RESPONSE,
                 error: error
