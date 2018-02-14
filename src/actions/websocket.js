@@ -48,12 +48,11 @@ export function websocketMessageReceivedReducer(state, action) {
             var accountIdx = state.get('accounts').findIndex(
                 (value, index, iter) => value.getIn(['details', 'id']) == action.message.for_account_id
             );
-            console.log(state);
-            return state.update('accounts', accounts => {
-                accounts.update(accountIdx, the_account => {
-                    the_account.get('statement').add(fromJS(action.message.data));
-                    the_account.get('statement').sortBy((statement_item) => statement_item.get('item'));
-                });
+            
+            return state.updateIn(['accounts', accountIdx, 'statement'], statement => {
+                return statement
+                          .push(fromJS(action.message.data))
+                          .sortBy((statement_item) => statement_item.get('item'));
             });
         default:
             console.log(`UNABLE TO HANDLE MESSAGE TYPE: ${action.message.update_type}`)
