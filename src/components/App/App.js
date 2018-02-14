@@ -6,9 +6,6 @@ import createBrowserHistory from 'history/createBrowserHistory'
 import HomeView from "../Home/Home"
 import LoginView from "../Login/Login"
 
-import { initAccountData } from '../../actions/init';
-import { initWebsocketConnection } from '../../actions/websocket';
-
 const history = createBrowserHistory();
 
 class App extends Component {

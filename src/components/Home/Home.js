@@ -42,7 +42,7 @@ const mapStateToProps = state => {
       "username": state.get('username'),
       "websocketConnection": state.get('websocketConnection'),
       "account_ids": state.get('accounts', List())
-                          .map(account => account.getIn(['details', 'account_id']))
+                          .map(account => account.getIn(['details', 'id']))
   }
 }
 

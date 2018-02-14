@@ -1,5 +1,7 @@
 import { BFAF_BASE_URL } from '../bfaf';
 
+import { fromJS } from 'immutable';
+
 export const WEBSOCKET_INIT_SUCCESS = 'WEBSOCKET_INIT_SUCCESS';
 export const WEBSOCKET_MESSAGE_RECEIVED = 'WEBSOCKET_MESSAGE_RECEIVED';
 
@@ -29,7 +31,7 @@ export function initWebsocketConnection(accountIds, store) {
 }
 
 function messageReceived(wsMessage) {
-    var message = JSON.parse(wsMessage);
+    var message = JSON.parse(wsMessage.data);
     return {
         type: WEBSOCKET_MESSAGE_RECEIVED,
         message: message
@@ -44,12 +46,13 @@ export function websocketMessageReceivedReducer(state, action) {
     switch(action.message.update_type) {
         case "new_statement_item":
             var accountIdx = state.get('accounts').findIndex(
-                (value, index, iter) => value.details.account_id == action.message.for_account_id
+                (value, index, iter) => value.getIn(['details', 'id']) == action.message.for_account_id
             );
+            console.log(state);
             return state.update('accounts', accounts => {
                 accounts.update(accountIdx, the_account => {
-                    the_account.statement.add(action.message.data);
-                    the_account.statement.sortBy((statement_item) => statement_item.itemNo);
+                    the_account.get('statement').add(fromJS(action.message.data));
+                    the_account.get('statement').sortBy((statement_item) => statement_item.get('item'));
                 });
             });
         default:

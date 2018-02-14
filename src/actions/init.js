@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { List } from 'immutable';
+import { List, fromJS } from 'immutable';
 
 import { BFAF_BASE_URL } from '../bfaf';
 
@@ -52,7 +52,7 @@ export function initAccountData(username) {
 }
 
 export function initSuccessReducer(state, action) {
-    return state.set("accounts", List(action.accounts));
+    return state.set("accounts", fromJS(action.accounts));
 }
 
 export function initFailReducer(state, action) {
