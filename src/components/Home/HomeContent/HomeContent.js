@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 
 import { List, Map } from "immutable";
 
@@ -23,8 +22,8 @@ class HomeContent extends Component {
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
-  var idx = state.get("currentlySelectedAccountIdx");
-  var account = state.get('accounts').get(idx, Map());
+  var idx = state.app.get("currentlySelectedAccountIdx");
+  var account = state.app.get('accounts').get(idx, Map());
   return {
     balance: account.getIn(["details",'balance'], "n/a"),
     statement: account.get('statement', List())

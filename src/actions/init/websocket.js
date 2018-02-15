@@ -1,4 +1,4 @@
-import { BFAF_BASE_URL } from '../bfaf';
+import { BFAF_BASE_URL } from '../../bfaf';
 
 import { fromJS } from 'immutable';
 
@@ -6,7 +6,7 @@ export const WEBSOCKET_INIT_SUCCESS = 'WEBSOCKET_INIT_SUCCESS';
 export const WEBSOCKET_MESSAGE_RECEIVED = 'WEBSOCKET_MESSAGE_RECEIVED';
 
 
-export function initWebsocketConnection(accountIds, store) {
+export function initWebsocketConnection(accountIds, dispatch, callback) {
     var url = `ws://${BFAF_BASE_URL}/updates`;
     console.debug(`Opening websocket connection on ${url}`);
     
@@ -21,13 +21,10 @@ export function initWebsocketConnection(accountIds, store) {
     socket.onmessage = wsMessage => {
         console.debug("Received wsMessage: ", wsMessage);
         
-        store.dispatch(messageReceived(wsMessage));
+        dispatch(messageReceived(wsMessage));
     }
     
-    return {
-        type: WEBSOCKET_INIT_SUCCESS,
-        socket: socket
-    }
+    callback(socket);
 }
 
 function messageReceived(wsMessage) {
@@ -38,18 +35,14 @@ function messageReceived(wsMessage) {
     }
 }
 
-export function websocketInitSuccessReducer(state, action) {
-    return state.set("websocketConnection", action.socket)
-}
-
 export function websocketMessageReceivedReducer(state, action) {
     switch(action.message.update_type) {
         case "new_statement_item":
-            var accountIdx = state.get('accounts').findIndex(
-                (value, index, iter) => value.getIn(['details', 'id']) == action.message.for_account_id
+            var accountIdx = state.app.get('accounts').findIndex(
+                (value, index, iter) => value.getIn(['details', 'id']) === action.message.for_account_id
             );
             
-            return state.updateIn(['accounts', accountIdx, 'statement'], statement => {
+            return state.app.updateIn(['accounts', accountIdx, 'statement'], statement => {
                 return statement
                           .push(fromJS(action.message.data))
                           .sortBy((statement_item) => statement_item.get('item'));
@@ -58,5 +51,4 @@ export function websocketMessageReceivedReducer(state, action) {
             console.log(`UNABLE TO HANDLE MESSAGE TYPE: ${action.message.update_type}`)
             return state;
     }
-    return state
 }

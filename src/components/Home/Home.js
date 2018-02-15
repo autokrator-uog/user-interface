@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { List } from "immutable";
 
-import { initWebsocketConnection } from "../../actions/websocket";
-
 import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
 
@@ -17,12 +15,6 @@ class Home extends Component {
           this.props.history.push("/");
           return;
       }
-
-      if (this.props.websocketConnection !== null) {
-          this.props.websocketConnection.close();
-      }
-
-      this.props.startWebsocket(this.props.account_ids, this.props.store)
   }
 
   render(){
@@ -39,18 +31,15 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-      "username": state.get('username'),
-      "websocketConnection": state.get('websocketConnection'),
-      "account_ids": state.get('accounts', List())
+      "username": state.app.get('username'),
+      "account_ids": state.app.get('accounts', List())
                           .map(account => account.getIn(['details', 'id']))
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    startWebsocket: (accountIds, store) => {
-      dispatch(initWebsocketConnection(accountIds, store));
-    }
+    
   }
 }
 

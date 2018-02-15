@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { Router, Route, Redirect, IndexRoute} from 'react-router-dom'
-import createBrowserHistory from 'history/createBrowserHistory'
+
+import { Route } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 
 
 import HomeView from "../Home/Home"
 import LoginView from "../Login/Login"
 
-const history = createBrowserHistory();
-
 class App extends Component {
 
   render() {
     return (
-      <Router history={history}>
+      <ConnectedRouter history={this.props.history}>
         <div>
-          <Route exact path='/' render={()=> <LoginView history={history} /> } />
-          <Route path='/user' render={()=> <HomeView store={this.props.store} history={history} /> } />
+          <Route exact path='/' component={LoginView} />
+          <Route path='/user' component={HomeView} />
         </div>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }

@@ -1,33 +1,19 @@
 import { fromJS } from 'immutable';
 
-import { INIT_VALID_RESPONSE, INIT_INVALID_RESPONSE, INIT_USER_NOT_EXISTS } from './actions/init';
-import { initSuccessReducer, initFailReducer } from './actions/init';
+import { INIT_VALID_RESPONSE, INIT_INVALID_RESPONSE, INIT_USER_NOT_EXISTS } from './actions/init/init';
+import { initSuccessReducer, initFailReducer, initUserNotFoundReducer } from './actions/init/init';
 
-import { WEBSOCKET_INIT_SUCCESS, WEBSOCKET_MESSAGE_RECEIVED } from './actions/websocket';
-import { websocketInitSuccessReducer, websocketMessageReceivedReducer } from './actions/websocket';
+import { WEBSOCKET_MESSAGE_RECEIVED } from './actions/init/websocket';
+import { websocketMessageReceivedReducer } from './actions/init/websocket';
 
 import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions';
 
 
-const initialState = fromJS({
+export const initialState = fromJS({
     username: "",
     password: "",
 
-    accounts: [
-        {
-          "details": {
-            "balance": "1234.67",
-            "id": 1
-          },
-          "statement": [
-            {
-              "itemNo": 1,
-              "amount": "59.99",
-              "note": "Debit Transaction"
-            }
-          ]
-        }
-    ],
+    accounts: [],
     currentlySelectedAccountIdx: 0,
 
     pendingTransactions: [],
@@ -36,7 +22,7 @@ const initialState = fromJS({
     errors: []
 });
 
-function appReducers(state, action) {
+export function appReducers(state, action) {
   if (typeof state === 'undefined') {
     console.debug("Initializing state to initialState: ", initialState);
     return initialState
@@ -57,10 +43,8 @@ function appReducers(state, action) {
     case INIT_INVALID_RESPONSE:
       return initFailReducer(state, action);
     case INIT_USER_NOT_EXISTS:
-      return state.set("username", "");
+      return initUserNotFoundReducer(state, action);
 
-    case WEBSOCKET_INIT_SUCCESS:
-      return websocketInitSuccessReducer(state, action);
     case WEBSOCKET_MESSAGE_RECEIVED:
       return websocketMessageReceivedReducer(state, action);
 
@@ -74,5 +58,3 @@ function appReducers(state, action) {
       return state;
   }
 }
-
-export default appReducers;

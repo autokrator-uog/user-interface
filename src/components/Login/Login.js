@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, FormGroup, FormControl, ControlLabel, Alert } from "react-bootstrap";
 
 import "./Login.css";
-import { initAccountData } from "../../actions/init";
+import { init } from "../../actions/init/init";
 
 
 class Login extends Component {
@@ -47,13 +46,25 @@ class Login extends Component {
       event.preventDefault();
 
       this.onLogin(this.state.username);
-      this.props.history.push('/user');
+    }
+    
+    renderErrors() {
+        return this.props.errors.map((error, idx) => {
+          return (
+            <Alert bsStyle="warning" key={idx}>
+              <p>{error}</p>
+            </Alert>
+          )
+        })
     }
 
     render() {
       return (
         <div className="Login">
           <form onSubmit={this.handleSubmit}>
+            <div id="errors">
+              {this.renderErrors()}
+            </div>
 
             <FormGroup controlId="username" bsSize="large">
               <ControlLabel>Username</ControlLabel>
@@ -84,9 +95,11 @@ class Login extends Component {
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    username: state.get('username'),
-    password: state.get('password')
+    username: state.app.get('username'),
+    password: state.app.get('password'),
+    errors: state.app.get('errors')
   }
 }
 
@@ -105,8 +118,8 @@ const mapDispatchToProps = dispatch => {
         password: password
       });
     },
-    onLogin: username => {
-      dispatch(initAccountData(username));
+    onLogin: (username) => {
+      dispatch(init(username));
     }
   }
 }

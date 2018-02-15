@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import { Container, Table, Header, Segment } from 'semantic-ui-react';
+
+import { Container, Header, Segment } from 'semantic-ui-react';
 
 class TopContent extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
+  
   render(){
 
     return(
