@@ -5,8 +5,6 @@ import { List } from "immutable";
 import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
 
-import Navbar from "../Navbar/Navbar"
-import Footer from "../Footer/Footer"
 
 class Home extends Component {
 
@@ -20,10 +18,8 @@ class Home extends Component {
   render(){
     return (
       <div>
-        <Navbar />
-        <HomeHeader />
+        <HomeHeader username={this.props.username} />
         <HomeContent />
-        <Footer />
       </div>
     );
   }

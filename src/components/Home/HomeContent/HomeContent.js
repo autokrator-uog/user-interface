@@ -1,32 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { List, Map } from "immutable";
-
-import TopContent from "./TopContent/TopContent"
-import MiddleContent from "./MiddleContent/MiddleContent"
+import AccountView from "./AccountView/AccountView";
 
 class HomeContent extends Component {
-
+  renderAccountView() {
+      return (
+          <AccountView accountIdx={this.props.currentlySelectedAccountIdx} />
+      )
+  }
+  
   render() {
-
     return (
       <div>
-        <TopContent balance = {this.props.balance}/>
-        <MiddleContent statement = {this.props.statement}/>
+          {this.renderAccountView()}
       </div>
     )
-
   }
 }
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
-  var idx = state.app.get("currentlySelectedAccountIdx");
-  var account = state.app.get('accounts').get(idx, Map());
   return {
-    balance: account.getIn(["details",'balance'], "n/a"),
-    statement: account.get('statement', List())
+    accounts: state.app.get('accounts'),
+    currentlySelectedAccountIdx: state.app.get('currentlySelectedAccountIdx')
   }
 }
 

@@ -22,8 +22,9 @@ export function init(username) {
                 case 200:
                     // valid data... init the WebSocket
                     var accounts = response.data.accounts;
+                    var account_ids = fromJS(accounts).map(account => account.getIn(['details', 'id']));
                 
-                    initWebsocketConnection(accounts, dispatch, (websocket) => {
+                    initWebsocketConnection(account_ids, dispatch, (websocket) => {
                         dispatch({
                             type: INIT_VALID_RESPONSE,
                             accounts: accounts,
@@ -64,8 +65,16 @@ export function init(username) {
 }
 
 export function initSuccessReducer(state, action) {
+    var accounts = fromJS(action.accounts);
+    
+    accounts = accounts.map(account => {
+        return account.update('statement', statement => {
+            return statement.sortBy((statement_item) => statement_item.get('item')).reverse()
+        })
+    })
+    
     return state
-              .set("accounts", fromJS(action.accounts))
+              .set("accounts", accounts)
               .set("errors", List())
               .set("websocketConnection", action.websocketConnection)
 }

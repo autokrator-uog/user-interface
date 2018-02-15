@@ -6,16 +6,11 @@ class HomeHeader extends Component {
 
     return(
       <div>
-
-        <Container text style={{ marginTop: '7em', textAlign: 'center' }}>
-          <Header as='h1'>Account Summary</Header>
-          <p>Customer number:  ******0013</p>
-          <p>Last login:  10 P.M. Sunday 21 January 2018 (UK time)</p>
+        <Container text>
+          <Header as='h1'>Welcome back <b>{this.props.username}</b>!</Header>
           <Divider inverted section />
         </Container>
-
       </div>
-
     );
   }
 }

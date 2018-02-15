@@ -32,9 +32,7 @@ export function appReducers(state, action) {
 
   switch (action.type) {
     case "USERNAME_INPUT":
-      var newState = state.set("username", action.username);
-      console.log(newState);
-      return newState;
+      return state.set("username", action.username);
     case "PASSWORD_INPUT":
       return state.set("password", action.password);
 

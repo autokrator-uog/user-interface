@@ -38,15 +38,18 @@ function messageReceived(wsMessage) {
 export function websocketMessageReceivedReducer(state, action) {
     switch(action.message.update_type) {
         case "new_statement_item":
-            var accountIdx = state.app.get('accounts').findIndex(
+            console.debug("Processing new_statement_item ", action.message);
+            
+            var accountIdx = state.get('accounts').findIndex(
                 (value, index, iter) => value.getIn(['details', 'id']) === action.message.for_account_id
             );
             
-            return state.app.updateIn(['accounts', accountIdx, 'statement'], statement => {
-                return statement
-                          .push(fromJS(action.message.data))
-                          .sortBy((statement_item) => statement_item.get('item'));
-            });
+            return state
+                      .updateIn(['accounts', accountIdx, 'statement'], statement => {
+                          return statement.insert(0, fromJS(action.message.data));
+                      })
+                      .updateIn(['accounts', accountIdx, 'details', 'balance'], balance => balance + action.message.data.amount);
+            
         default:
             console.log(`UNABLE TO HANDLE MESSAGE TYPE: ${action.message.update_type}`)
             return state;
