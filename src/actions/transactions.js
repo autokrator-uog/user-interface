@@ -12,8 +12,8 @@ export function sendMoney(fromAccount, toAccount, amount) {
       console.debug(`Sending POST request to ${url}`);
       
       var payload = {
-          'from_account_id': fromAccount,
-          'to_account_id': toAccount,
+          'from_account_id': parseInt(fromAccount),
+          'to_account_id': parseInt(toAccount),
           'amount': amount
       }
       

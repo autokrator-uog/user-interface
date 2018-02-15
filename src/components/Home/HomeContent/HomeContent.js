@@ -22,7 +22,6 @@ class HomeContent extends Component {
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
   return {
-    accounts: state.app.get('accounts'),
     currentlySelectedAccountIdx: state.app.get('currentlySelectedAccountIdx')
   }
 }

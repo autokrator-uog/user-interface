@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Button, FormGroup, FormControl, ControlLabel, Alert } from "react-bootstrap";
+// import { Button, FormGroup, FormControl, ControlLabel, Alert } from "react-bootstrap";
+import { Form, Button, Message } from "semantic-ui-react";
 
 import "./Login.css";
 import { init } from "../../actions/init/init";
@@ -51,9 +52,9 @@ class Login extends Component {
     renderErrors() {
         return this.props.errors.map((error, idx) => {
           return (
-            <Alert bsStyle="warning" key={idx}>
+            <Message color='yellow' key={idx}>
               <p>{error}</p>
-            </Alert>
+            </Message>
           )
         })
     }
@@ -61,33 +62,33 @@ class Login extends Component {
     render() {
       return (
         <div className="Login">
-          <form onSubmit={this.handleSubmit}>
-            <div id="errors">
-              {this.renderErrors()}
-            </div>
+          <Form onSubmit={this.handleSubmit}>
+            
+            {this.renderErrors()}
 
-            <FormGroup controlId="username" bsSize="large">
-              <ControlLabel>Username</ControlLabel>
-              <FormControl autoFocus type="username"
+            <Form.Field>
+              <label>Username</label>
+              <Form.Input
+                type="username"
                 value={this.state.username}
                 onChange={this.handleUsernameInput}
               />
-            </FormGroup>
+            </Form.Field>
 
-            <FormGroup controlId="password" bsSize="large">
-              <ControlLabel>Password</ControlLabel>
-              <FormControl
+            <Form.Field>
+              <label>Password</label>
+              <Form.Input
                 value={this.state.password}
                 onChange={this.handlePasswordInput}
                 type="password"
               />
-          </FormGroup>
+            </Form.Field>
 
-            <Button block bsSize="large" disabled={!this.validateForm()} type="submit">
+            <Button disabled={!this.validateForm()} type="submit">
               Login
             </Button>
             
-          </form>
+          </Form>
         </div>
       );
     }

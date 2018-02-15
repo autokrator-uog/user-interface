@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Container, Table, Header, Segment, Divider } from 'semantic-ui-react';
 
+import Actions from './Actions';
+
 class AccountView extends Component {
   getStatement() {
     return this.props.account.get('statement')
@@ -12,7 +14,7 @@ class AccountView extends Component {
   }
   
   getAccountId() {
-    return this.accountid = this.props.account.getIn(['details', 'id'])
+    return this.props.account.getIn(['details', 'id'])
   }
 
   renderStatementItems(){
@@ -23,7 +25,7 @@ class AccountView extends Component {
               {item.note}
               
               <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red' }}>
-                  £{item.amount}
+                  {item.amount} GBP
               </Header>
           </Segment>
       )
@@ -43,11 +45,13 @@ class AccountView extends Component {
                   <Header as='h1'>Balance:</Header>
                 </Table.Cell>
                 <Table.Cell textAlign='right'>
-                  <Header as='h1'>£{this.getBalance()}</Header>
+                  <Header as='h1'>{this.getBalance()} GBP</Header>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
           </Table>
+          
+          <Actions accountid={this.getAccountId()} />
           
           <div style={{textAlign: 'left'}}>
             <Header size='small'>Statement:</Header>

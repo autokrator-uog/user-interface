@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { List } from "immutable";
 
 import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
@@ -27,9 +26,7 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-      "username": state.app.get('username'),
-      "account_ids": state.app.get('accounts', List())
-                          .map(account => account.getIn(['details', 'id']))
+      "username": state.app.get('username')
   }
 }
 
