@@ -49,6 +49,7 @@ class AccountView extends Component {
             </Table.Body>
           </Table>
 
+
           <div style={{textAlign: 'left'}}>
             <Header size='small'>Statement:</Header>
           </div>
