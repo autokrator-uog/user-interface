@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Container, Header, Divider} from 'semantic-ui-react';
+import { Container, Header} from 'semantic-ui-react';
 
 import HomeHeader from "../HomeHeader/HomeHeader"
 import Actions from '../HomeContent/AccountView/Actions';

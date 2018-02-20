@@ -7,7 +7,7 @@ import { ConnectedRouter } from 'react-router-redux'
 import HomeView from "../Home/Home"
 import LoginView from "../Login/Login"
 
-import Navbar from "./Navbar/Navbar"
+//import Navbar from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 
 class App extends Component {

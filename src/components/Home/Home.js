@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Grid, Divider, Segment } from 'semantic-ui-react'
+import { Grid, Segment } from 'semantic-ui-react'
 
-import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
 import SidePanel from "./SidePanel/SidePanel"
 

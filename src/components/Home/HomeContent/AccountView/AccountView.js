@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Container, Table, Header, Segment, Divider } from 'semantic-ui-react';
 
-import Actions from './Actions';
-
 class AccountView extends Component {
   getStatement() {
     return this.props.account.get('statement')
