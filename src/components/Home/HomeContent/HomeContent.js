@@ -4,16 +4,12 @@ import { connect } from "react-redux";
 import AccountView from "./AccountView/AccountView";
 
 class HomeContent extends Component {
-  renderAccountView() {
-      return (
-          <AccountView accountIdx={this.props.currentlySelectedAccountIdx} />
-      )
-  }
-  
+
+
   render() {
     return (
       <div>
-          {this.renderAccountView()}
+          <AccountView accountIdx={this.props.currentlySelectedAccountIdx} />
       </div>
     )
   }

@@ -115,7 +115,6 @@ class Login extends Component {
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
-  console.log(state);
   return {
     username: state.app.get('username'),
     password: state.app.get('password'),

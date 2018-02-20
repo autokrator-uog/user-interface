@@ -6,10 +6,10 @@ class HomeHeader extends Component {
 
     return(
       <div>
-        <Container text>
+
           <Header as='h1'>Welcome back <b>{this.props.username}</b>!</Header>
           <Divider inverted section />
-        </Container>
+        
       </div>
     );
   }
