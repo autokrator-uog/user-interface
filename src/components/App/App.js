@@ -16,13 +16,12 @@ class App extends Component {
     return (
       <ConnectedRouter history={this.props.history} >
         <div className="site-container">
-          <Navbar />
-          
+
           <div className="content">
               <Route exact path='/' component={LoginView} />
               <Route path='/user' component={HomeView} />
           </div>
-          
+
           <Footer />
         </div>
       </ConnectedRouter>
