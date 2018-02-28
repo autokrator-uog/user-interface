@@ -19,11 +19,11 @@ class AccountView extends Component {
     return this.getStatement().map((it) =>{
       var item = it.toObject();
       return(
-          <Segment key={item.item} textAlign='left'>
+          <Segment vertical key={item.item} textAlign='left'>
               {item.note}
 
-              <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red' }}>
-                  {item.amount} GBP
+              <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red', fontFamily: 'Roboto Mono, monospace'}}>
+                  £ {item.amount}
               </Header>
           </Segment>
       )
@@ -33,26 +33,11 @@ class AccountView extends Component {
   render(){
     return(
       <div>
+          <Segment clearing inverted>
+                  <Header floated='left' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}>Balance:</Header>
+                  <Header floated='right' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}> £ {this.getBalance()}</Header>
+          </Segment>
 
-          <Table>
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as='h1'>Balance:</Header>
-                </Table.Cell>
-                <Table.Cell textAlign='right'>
-                  <Header as='h1'>{this.getBalance()} GBP</Header>
-                </Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-
-
-          <div style={{textAlign: 'left'}}>
-            <Header size='small'>Statement:</Header>
-          </div>
-
-          <Divider />
 
           <Container>
               {this.renderStatementItems()}
