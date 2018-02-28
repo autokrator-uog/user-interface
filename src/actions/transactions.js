@@ -10,13 +10,13 @@ export function sendMoney(fromAccount, toAccount, amount) {
     return function(dispatch) {
       var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/send`;
       console.debug(`Sending POST request to ${url}`);
-      
+
       var payload = {
-          'from_account_id': parseInt(fromAccount),
-          'to_account_id': parseInt(toAccount),
+          'from_account_id': parseInt(fromAccount,10),
+          'to_account_id': parseInt(toAccount,10),
           'amount': amount
       }
-      
+
       axios.post(url, payload)
         .then(function(response) {
             return dispatch({
