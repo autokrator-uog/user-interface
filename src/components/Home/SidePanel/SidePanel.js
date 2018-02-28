@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Container, Header} from 'semantic-ui-react';
+import { Container, Header, Segment} from 'semantic-ui-react';
 
 import HomeHeader from "../HomeHeader/HomeHeader"
 import Transactions from '../Transactions/Transactions';
@@ -17,9 +17,11 @@ class SidePanel extends Component {
       <div>
 
       <Container>
+        <Segment>
             <HomeHeader username={this.props.username}/>
             <Header as='h1'>Account: {this.getAccountId()}</Header>
             <Transactions account={this.props.account} />
+        </Segment>
       </Container>
       </div>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Form, Button, Message } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 
 import { sendMoney } from '../../../../actions/transactions';
 

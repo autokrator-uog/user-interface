@@ -21,9 +21,9 @@ class Home extends Component {
       <div>
         <Grid>
           <Grid.Column width={10}>
-          <Segment>
+          <Segment raised>
             <HomeContent />
-            </Segment>
+          </Segment>
           </Grid.Column>
 
 
