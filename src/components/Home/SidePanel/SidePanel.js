@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Container, Header} from 'semantic-ui-react';
 
 import HomeHeader from "../HomeHeader/HomeHeader"
-import Actions from '../HomeContent/AccountView/Actions';
+import Transactions from '../Transactions/Transactions';
 
 class SidePanel extends Component {
 
@@ -19,7 +19,7 @@ class SidePanel extends Component {
       <Container>
             <HomeHeader username={this.props.username}/>
             <Header as='h1'>Account: {this.getAccountId()}</Header>
-            <Actions accountid={this.getAccountId()} />
+            <Transactions account={this.props.account} />
       </Container>
       </div>
     );

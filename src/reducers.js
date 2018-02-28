@@ -10,8 +10,8 @@ import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions
 
 
 export const initialState = fromJS({
-    username: "Naji",
-    password: "asdasd",
+    username: "ToddSteele",
+    password: "asd",
 
     accounts: [],
     currentlySelectedAccountIdx: 0,
