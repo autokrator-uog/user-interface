@@ -75,7 +75,7 @@ class SendMoney extends Component {
                 value={this.state.amount} />
             </Form.Field>
 
-            <Button disabled={!this.validateForm()} type='submit'>
+            <Button primary disabled={!this.validateForm()} type='submit'>
               Send
             </Button>
           </Form>

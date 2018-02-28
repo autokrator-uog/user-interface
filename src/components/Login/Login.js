@@ -99,7 +99,7 @@ class Login extends Component {
                         />
                       </Form.Field>
 
-                      <Button disabled={!this.validateForm()} type="submit">
+                      <Button primary disabled={!this.validateForm()} type="submit">
                         Login
                       </Button>
 

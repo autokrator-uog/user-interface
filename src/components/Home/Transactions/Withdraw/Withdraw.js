@@ -14,6 +14,10 @@ class Withdraw extends Component {
     }
   }
 
+  validateForm(){
+    return this.state.amount > 0;
+  }
+
   //  TODO will the selection of currentIndex be handled in the actions ?
   getAccountId() {
       return this.props.accountid;
@@ -49,7 +53,9 @@ class Withdraw extends Component {
                 onChange={this.handleChangeAmount}
                 value={this.state.amount} />
             </Form.Field>
-            <Button type='submit'>Send</Button>
+            <Button primary disabled={!this.validateForm()} type='submit'>
+              Send
+            </Button>
           </Form>
       </div>
 
