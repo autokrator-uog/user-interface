@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { Container, Header, Segment, Button} from 'semantic-ui-react';
 
 import Form from './Form/Form';
-import './SidePanel.css'
+import DropDown from './DropDown/DropDown';
+import './SidePanel.css';
 
 class SidePanel extends Component {
 
@@ -18,6 +19,9 @@ class SidePanel extends Component {
       <div className="sidePanel">
         <Container>
           <Segment clearing>
+
+            {/* TODO ADD THE DROPDOWN COMPONENT */} 
+
             <div className="account">
               <Header as='h2' style={{ fontFamily: 'Roboto Mono, monospace' }}>Account: {this.getAccountId()}</Header>
             </div>
@@ -40,7 +44,7 @@ class SidePanel extends Component {
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
   return {
-    account: state.app.get('accounts').get(ownProps.index)
+    account: state.app.get('accounts').get(ownProps.index),
   }
 }
 
