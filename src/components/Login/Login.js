@@ -66,8 +66,8 @@ class Login extends Component {
       return (
         <div>
 
-            <div class="ui centered grid container">
-              <div class="seven wide column">
+            <div className="ui centered grid container">
+              <div className="seven wide column">
                 <div className="Login">
                     <Form onSubmit={this.handleSubmit} size="large">
 
