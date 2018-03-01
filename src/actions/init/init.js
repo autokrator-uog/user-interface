@@ -14,7 +14,7 @@ export const INIT_INVALID_RESPONSE = 'INIT_INVALID_RESPONSE';
 export function init(username) {
     return function(dispatch) {
       var url = `${window.location.protocol}//${BFAF_BASE_URL}/init?user_name=${username}`;
-      console.debug(`Sending request to ${url}`);
+      console.log(`Sending request to ${url}`);
 
       axios.get(url)
         .then(function(response) {

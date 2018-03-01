@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Grid, Segment } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 
+import HomeHeader from "./HomeHeader/HomeHeader"
 import HomeContent from "./HomeContent/HomeContent"
 import SidePanel from "./SidePanel/SidePanel"
 
@@ -19,20 +20,17 @@ class Home extends Component {
   render(){
     return (
       <div>
-        <Grid>
-          <Grid.Column width={10}>
-          <Segment>
-            <HomeContent />
-            </Segment>
-          </Grid.Column>
 
+        <HomeHeader username={this.props.username}/>
+
+        <Grid stackable>
+          <Grid.Column width={10}>
+            <HomeContent />
+          </Grid.Column>
 
           <Grid.Column width={5}>
-
-            <SidePanel username={this.props.username} index={this.props.currentlySelectedAccountIdx}/>
-
+            <SidePanel index={this.props.currentlySelectedAccountIdx}/>
           </Grid.Column>
-
         </Grid>
       </div>
     );

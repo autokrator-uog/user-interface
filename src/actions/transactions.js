@@ -9,7 +9,7 @@ export const TRANSACTION_ERROR = 'TRANSACTION_ERROR';
 export function sendMoney(fromAccount, toAccount, amount) {
     return function(dispatch) {
       var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/send`;
-      console.debug(`Sending POST request to ${url}`);
+      console.log(`Sending POST request to ${url}`);
 
       var payload = {
           'from_account_id': parseInt(fromAccount,10),

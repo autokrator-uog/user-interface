@@ -1,26 +1,35 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
+
+import createHistory from 'history/createBrowserHistory'
+import { routerReducer, routerMiddleware } from 'react-router-redux'
 
 import App from './App';
-import appReducers from '../../reducers';
-
-beforeEach(() => {
-  console.debug = (...args) => {
-      console.log.apply(this, args)
-  }
-})
+import { appReducers, initialState } from '../../reducers';
 
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  let store = createStore(appReducers, applyMiddleware(thunk));
+  const history = createHistory();
+  
+  const store = createStore(
+    combineReducers({
+      router: routerReducer,
+      app: appReducers
+    }),
+    { app: initialState, router: null },
+    compose(
+      applyMiddleware(thunk),
+      applyMiddleware(routerMiddleware(history))
+    )
+  );
   
   ReactDOM.render(
     <Provider store={store}>
-      <App store={store} />
+      <App history={history} />
     </Provider>, div);
   ReactDOM.unmountComponentAtNode(div);
 });

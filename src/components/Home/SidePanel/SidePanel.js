@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Container, Header} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Container, Segment, Button} from 'semantic-ui-react';
 
-import HomeHeader from "../HomeHeader/HomeHeader"
-import Actions from '../HomeContent/AccountView/Actions';
+import Form from './Form/Form';
+import DropDown from './DropDown/DropDown';
+import './SidePanel.css';
 
 class SidePanel extends Component {
 
@@ -14,13 +16,25 @@ class SidePanel extends Component {
   render(){
 
     return(
-      <div>
+      <div className="sidePanel">
+        <Container>
+          <Segment clearing>
 
-      <Container>
-            <HomeHeader username={this.props.username}/>
-            <Header as='h1'>Account: {this.getAccountId()}</Header>
-            <Actions accountid={this.getAccountId()} />
-      </Container>
+
+
+            <div className="account">
+              <DropDown />
+            </div>
+
+            <Form account={this.props.account} />
+
+            <div>
+              <Link to='/'>
+                <Button negative floated='right' style={{marginTop:'15em', fontFamily: 'Roboto Mono, monospace' }}> Logout </Button>
+              </Link>
+            </div>
+          </Segment>
+        </Container>
       </div>
     );
   }
@@ -30,7 +44,7 @@ class SidePanel extends Component {
 const mapStateToProps = (state, ownProps) => {
   console.log(state);
   return {
-    account: state.app.get('accounts').get(ownProps.index)
+    account: state.app.get('accounts').get(ownProps.index),
   }
 }
 

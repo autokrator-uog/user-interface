@@ -58,57 +58,48 @@ class Login extends Component {
         })
     }
 
-
-
-
     render() {
 
       return (
         <div>
+            <div className="Login">
+                <Form onSubmit={this.handleSubmit} size="large">
 
-            <div class="ui centered grid container">
-              <div class="seven wide column">
-                <div className="Login">
-                    <Form onSubmit={this.handleSubmit} size="large">
+                  {this.renderErrors()}
 
-                      {this.renderErrors()}
+                  <Form.Field>
 
-                      <Form.Field>
+                    <Form.Input
+                      type="username"
+                      placeholder='Username'
+                      icon='user'
+                      iconPosition='left'
+                      value={this.state.username}
+                      onChange={this.handleUsernameInput}
 
-                        <Form.Input
-                          type="username"
-                          placeholder='Username'
-                          icon='user'
-                          iconPosition='left'
-                          value={this.state.username}
-                          onChange={this.handleUsernameInput}
+                    />
+                  </Form.Field>
 
-                        />
-                      </Form.Field>
+                  <Form.Field>
 
-                      <Form.Field>
+                    <Form.Input
+                      placeholder='Password'
+                      type="password"
+                      icon='lock'
+                      iconPosition='left'
+                      value={this.state.password}
+                      onChange={this.handlePasswordInput}
 
-                        <Form.Input
-                          placeholder='Password'
-                          type="password"
-                          icon='lock'
-                          iconPosition='left'
-                          value={this.state.password}
-                          onChange={this.handlePasswordInput}
+                    />
+                  </Form.Field>
 
-                        />
-                      </Form.Field>
+                  <Button primary disabled={!this.validateForm()} type="submit">
+                    Login
+                  </Button>
 
-                      <Button disabled={!this.validateForm()} type="submit">
-                        Login
-                      </Button>
-
-                  </Form>
-                </div>
-              </div>
+              </Form>
+            </div>
           </div>
-
-      </div>
       );
     }
 }
