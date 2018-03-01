@@ -8,51 +8,31 @@ class DropDown extends Component {
   constructor(props, context) {
     super(props);
 
-    this.state = {
-      AccountIdx: props.AccountIdx,
-      size: props.size
-
-    };
-
+    this.onAccountSelection = props.onAccountSelection;
   }
 
-  handleChange = event => {
-    var value = event.target.value;
+  handleChange = (event, obj) => {
+    var value = (obj.value);
 
     this.setState({
       AccountIdx: value
     });
+    this.onAccountSelection(value);
   }
 
 
   render(){
-
-    const options = [
-      { key: 0, text: 'Account Zero', value: 0 },
-      { key: 1, text: 'Account One', value: 1 },
-      { key: 2, text: 'Account Two', value: 2 },
-      { key: 3, text: 'Account Three', value: 3 },
-]
-
-
     return(
       <div>
-      ACCOUNT SIZE IS {this.props.size}
-      {this.props.accounts}
       <Grid columns={2}>
         <Grid.Column>
           <Dropdown
-            options={options}
-            placeholder='Choose an option'
             selection
+            placeholder='Choose an option'
+            options={this.props.account_choices}
             onChange={this.handleChange}
-            value={this.state.AccountIdx}
+            value={this.props.AccountIdx}
           />
-        </Grid.Column>
-        <Grid.Column>
-          <Segment secondary>
-            <pre>Current Index: {this.state.AccountIdx}</pre>
-          </Segment>
         </Grid.Column>
       </Grid>
       </div>
@@ -62,16 +42,29 @@ class DropDown extends Component {
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return {
     AccountIdx: state.app.get('currentlySelectedAccountIdx'),
     size: state.app.get('accounts').size,
+    account_choices: state.app.get('accounts').map((acc, index) => {
+     return {
+       key: index,
+       text: 'Account '+ acc.getIn(['details', 'id']),
+       value: index,
+     }
+    }).toArray()
   }
 }
 
 // allows the component to perform actions
+
 const mapDispatchToProps = dispatch => {
   return {
+    onAccountSelection: value => {
+      dispatch({
+        type: "ACCOUNT_SELECTION",
+        AccountIdx: value
+      })
+    }
 
   }
 }

@@ -20,10 +20,10 @@ class SidePanel extends Component {
         <Container>
           <Segment clearing>
 
-            {/* TODO ADD THE DROPDOWN COMPONENT */} 
+
 
             <div className="account">
-              <Header as='h2' style={{ fontFamily: 'Roboto Mono, monospace' }}>Account: {this.getAccountId()}</Header>
+              <DropDown />
             </div>
 
             <Form account={this.props.account} />
