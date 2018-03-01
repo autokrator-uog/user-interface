@@ -21,9 +21,10 @@ class SidePanel extends Component {
         <Segment clearing>
           <div className="account">
             <Header as='h2' style={{ fontFamily: 'Roboto Mono, monospace' }}>Account: {this.getAccountId()}</Header>
-            <Transactions account={this.props.account} />
+
           </div>
-            <div>
+          <Transactions account={this.props.account} />
+          <div>
               <Link to='/'>
                 <Button negative floated='right' style={{marginTop:'15em', fontFamily: 'Roboto Mono, monospace' }}> Logout </Button>
               </Link>
