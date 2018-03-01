@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import { Container, Header, Segment, Button} from 'semantic-ui-react';
+import { Container, Segment, Button} from 'semantic-ui-react';
 
 import Form from './Form/Form';
 import DropDown from './DropDown/DropDown';
@@ -20,10 +20,10 @@ class SidePanel extends Component {
         <Container>
           <Segment clearing>
 
-            {/* TODO ADD THE DROPDOWN COMPONENT */} 
+
 
             <div className="account">
-              <Header as='h2' style={{ fontFamily: 'Roboto Mono, monospace' }}>Account: {this.getAccountId()}</Header>
+              <DropDown />
             </div>
 
             <Form account={this.props.account} />

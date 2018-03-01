@@ -35,6 +35,8 @@ export function appReducers(state, action) {
       return state.set("username", action.username);
     case "PASSWORD_INPUT":
       return state.set("password", action.password);
+    case "ACCOUNT_SELECTION":
+      return state.set("currentlySelectedAccountIdx", action.AccountIdx);
 
     case INIT_VALID_RESPONSE:
       return initSuccessReducer(state, action);

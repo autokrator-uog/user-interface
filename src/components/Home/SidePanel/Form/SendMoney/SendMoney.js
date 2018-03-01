@@ -10,8 +10,8 @@ class SendMoney extends Component {
     super(props);
 
     this.state = {
-        destinationId: null,
-        amount: null,
+        destinationId: "",
+        amount: "",
     }
   }
 

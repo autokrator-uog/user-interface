@@ -19,7 +19,7 @@ const store = createStore(
     router: routerReducer,
     app: appReducers
   }),
-  initialState,
+  {app:initialState},
   compose(
     applyMiddleware(thunk),
     applyMiddleware(routerMiddleware(history))
