@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
 import { Container, Header, Segment, Button} from 'semantic-ui-react';
 
-import Transactions from '../Transactions/Transactions';
+import Form from './Form/Form';
 import './SidePanel.css'
 
 class SidePanel extends Component {
@@ -22,7 +22,7 @@ class SidePanel extends Component {
               <Header as='h2' style={{ fontFamily: 'Roboto Mono, monospace' }}>Account: {this.getAccountId()}</Header>
             </div>
 
-            <Transactions account={this.props.account} />
+            <Form account={this.props.account} />
 
             <div>
               <Link to='/'>

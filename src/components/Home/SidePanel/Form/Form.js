@@ -5,7 +5,7 @@ import  SendMoney  from "./SendMoney/SendMoney";
 import Withdrawal from "./Withdrawal/Withdrawal";
 import Deposit from "./Deposit/Deposit";
 
-import "./Transactions.css"
+import "./Form.css"
 
 class Transactions extends Component{
 

@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Button } from 'semantic-ui-react';
 
-import { withdraw } from '../../../../actions/transactions';
+import { sendMoney } from '../../../../../actions/transactions';
 
 
-class Withdrawal extends Component {
+class SendMoney extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+        destinationId: null,
         amount: null,
     }
   }
 
   validateForm(){
-    return this.state.amount > 0;
+    return this.state.amount > 0 && this.state.destinationId.length > 0 &&
+    this.state.destinationId > 0;
   }
 
-  //  TODO will the selection of currentIndex be handled in the actions ?
   getAccountId() {
       return this.props.accountid;
   }
@@ -27,9 +28,17 @@ class Withdrawal extends Component {
       event.preventDefault();
 
       this.props.sendTransaction(
+          this.props.accountid, // from account ID
+          this.state.destinationId, // to account ID
           this.state.amount // amount
       )
 
+  }
+
+  handleChangeDestinationId = event => {
+      this.setState({
+            destinationId: event.target.value,
+          })
   }
 
   handleChangeAmount = event => {
@@ -42,6 +51,18 @@ class Withdrawal extends Component {
     return (
       <div>
           <Form onSubmit={this.onSubmit}>
+
+            <Form.Field>
+              <label>Destination account ID:</label>
+              <Form.Input
+                type='integer'
+                placeholder='Account ID'
+                icon='id badge'
+                iconPosition='left'
+                onChange={this.handleChangeDestinationId}
+                value={this.state.destinationId} />
+            </Form.Field>
+
             <Form.Field>
               <label>Amount:</label>
               <Form.Input
@@ -53,6 +74,7 @@ class Withdrawal extends Component {
                 onChange={this.handleChangeAmount}
                 value={this.state.amount} />
             </Form.Field>
+
             <Button primary style={{ fontFamily: 'Roboto Mono, monospace' }}  disabled ={!this.validateForm()} type='submit'>
               Send
             </Button>
@@ -74,11 +96,11 @@ const mapStateToProps = state => {
 // allows the component to perform actions
 const mapDispatchToProps = dispatch => {
   return {
-      sendTransaction: (amount) => {
-          dispatch(withdraw(amount));
+      sendTransaction: (fromAccountId, toAccountId, amount) => {
+          dispatch(sendMoney(fromAccountId, toAccountId, amount));
       }
   }
 }
 
-const WithdrawalConnected = connect(mapStateToProps, mapDispatchToProps)(Withdrawal);
-export default WithdrawalConnected;
+const SendMoneyConnected = connect(mapStateToProps, mapDispatchToProps)(SendMoney);
+export default SendMoneyConnected;

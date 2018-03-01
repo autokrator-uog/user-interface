@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Form, Button } from 'semantic-ui-react';
 
-import { deposit } from '../../../../actions/transactions';
+import { deposit } from '../../../../../actions/transactions';
 
 
 class Deposit extends Component {
