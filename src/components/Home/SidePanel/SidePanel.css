@@ -1,4 +1,6 @@
-
+.account{
+  text-align: center;
+}
 .sidePanel {
   flex: 1;
   padding-right: 20%;
