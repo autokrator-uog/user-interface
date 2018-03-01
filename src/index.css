@@ -11,7 +11,7 @@ body {
 }
 .content {
   flex: 1;
-  margin-top: 80px;
+  
 }
 footer {
   z-index: 100;

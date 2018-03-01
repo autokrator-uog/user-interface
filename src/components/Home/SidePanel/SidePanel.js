@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom'
 import { Container, Header, Segment, Button} from 'semantic-ui-react';
 
-import HomeHeader from "../HomeHeader/HomeHeader"
 import Transactions from '../Transactions/Transactions';
+import './SidePanel.css'
 
 class SidePanel extends Component {
 
@@ -15,11 +15,10 @@ class SidePanel extends Component {
   render(){
 
     return(
-      <div>
+      <div className="sidePanel">
 
       <Container>
         <Segment clearing>
-            <HomeHeader username={this.props.username}/>
             <Header as='h1'>Account: {this.getAccountId()}</Header>
             <Transactions account={this.props.account} />
             <div>

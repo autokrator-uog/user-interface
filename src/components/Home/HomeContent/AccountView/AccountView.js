@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Container, Header, Segment} from 'semantic-ui-react';
 
+import "./AccountView.css"
+
 class AccountView extends Component {
   getStatement() {
     return this.props.account.get('statement')
@@ -19,7 +21,7 @@ class AccountView extends Component {
     return this.getStatement().map((it) =>{
       var item = it.toObject();
       return(
-          <Segment vertical key={item.item} textAlign='left'>
+          <Segment key={item.item} textAlign='left'>
               {item.note}
 
               <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red', fontFamily: 'Roboto Mono, monospace'}}>
@@ -33,16 +35,18 @@ class AccountView extends Component {
   render(){
     return(
       <div>
-          <Segment clearing inverted>
-                  <Header floated='left' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}>Balance:</Header>
-                  <Header floated='right' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}> £ {this.getBalance()}</Header>
-          </Segment>
+        <div className='balanceView'>
+            <Segment clearing raised>
+                    <Header floated='left' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}>Balance:</Header>
+                    <Header floated='right' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}> £ {this.getBalance()}</Header>
+            </Segment>
+        </div>
 
-
-          <Container>
-              {this.renderStatementItems()}
-          </Container>
-
+        <div className='statementView'>
+            <Container>
+                {this.renderStatementItems()}
+            </Container>
+        </div>
 
       </div>
 
