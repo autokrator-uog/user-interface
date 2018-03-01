@@ -53,7 +53,7 @@ class Deposit extends Component {
                 onChange={this.handleChangeAmount}
                 value={this.state.amount} />
             </Form.Field>
-            <Button primary disabled={!this.validateForm()} type='submit'>
+            <Button primary style={{ fontFamily: 'Roboto Mono, monospace' }}  disabled ={!this.validateForm()} type='submit'>
               Send
             </Button>
           </Form>

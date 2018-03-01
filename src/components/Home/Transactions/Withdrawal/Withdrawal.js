@@ -5,7 +5,7 @@ import { Form, Button } from 'semantic-ui-react';
 import { withdraw } from '../../../../actions/transactions';
 
 
-class Withdraw extends Component {
+class Withdrawal extends Component {
   constructor(props) {
     super(props);
 
@@ -53,7 +53,7 @@ class Withdraw extends Component {
                 onChange={this.handleChangeAmount}
                 value={this.state.amount} />
             </Form.Field>
-            <Button primary disabled={!this.validateForm()} type='submit'>
+            <Button primary style={{ fontFamily: 'Roboto Mono, monospace' }}  disabled ={!this.validateForm()} type='submit'>
               Send
             </Button>
           </Form>
@@ -80,5 +80,5 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const WithdrawConnected = connect(mapStateToProps, mapDispatchToProps)(Withdraw);
-export default WithdrawConnected;
+const WithdrawalConnected = connect(mapStateToProps, mapDispatchToProps)(Withdrawal);
+export default WithdrawalConnected;

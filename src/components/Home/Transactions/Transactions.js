@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { Tab } from 'semantic-ui-react'
 
 import  SendMoney  from "./SendMoney/SendMoney";
-import Withdraw from "./Withdraw/Withdraw";
+import Withdrawal from "./Withdrawal/Withdrawal";
 import Deposit from "./Deposit/Deposit";
 
+import "./Transactions.css"
 
 class Transactions extends Component{
 
@@ -17,15 +18,15 @@ class Transactions extends Component{
   render(){
 
     const panes = [
+      { menuItem: 'Transaction',  render: () => <Tab.Pane attached={false}><SendMoney accountid={this.getAccountId()}/></Tab.Pane>} ,
       { menuItem: 'Deposit', render: () => <Tab.Pane attached={false}><Deposit accountid={this.getAccountId()}/></Tab.Pane>},
-      { menuItem: 'Withdrawal', render: () => <Tab.Pane attached={false}><Withdraw accountid={this.getAccountId()}/></Tab.Pane>},
-      { menuItem: 'Send',  render: () => <Tab.Pane attached={false}><SendMoney accountid={this.getAccountId()}/></Tab.Pane>} ,
+      { menuItem: 'Withdrawal', render: () => <Tab.Pane attached={false}><Withdrawal accountid={this.getAccountId()}/></Tab.Pane>},
 
     ]
 
     return(
       <div>
-         <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+         <Tab menu={{ secondary: true, pointing: true, borderless: true }} panes={panes} />
       </div>
     );
 

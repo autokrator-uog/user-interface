@@ -22,7 +22,6 @@ class App extends Component {
               <Route path='/user' component={HomeView} />
           </div>
 
-          <Footer />
         </div>
       </ConnectedRouter>
     );

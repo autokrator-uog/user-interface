@@ -1,0 +1,5 @@
+.ui.tab.active , .ui.tab.open{
+  border: none;
+  margin:0px;
+  box-shadow: none;
+}
