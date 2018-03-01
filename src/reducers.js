@@ -24,11 +24,11 @@ export const initialState = fromJS({
 
 export function appReducers(state, action) {
   if (typeof state === 'undefined') {
-    console.debug("Initializing state to initialState: ", initialState);
+    console.log("Initializing state to initialState: ", initialState);
     return initialState
   }
 
-  console.debug(`Processing action of type: ${action.type}`, action)
+  console.log(`Processing action of type: ${action.type}`, action)
 
   switch (action.type) {
     case "USERNAME_INPUT":

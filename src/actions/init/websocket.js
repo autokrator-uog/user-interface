@@ -8,7 +8,7 @@ export const WEBSOCKET_MESSAGE_RECEIVED = 'WEBSOCKET_MESSAGE_RECEIVED';
 
 export function initWebsocketConnection(accountIds, dispatch, callback) {
     var url = `ws://${BFAF_BASE_URL}/updates`;
-    console.debug(`Opening websocket connection on ${url}`);
+    console.log(`Opening websocket connection on ${url}`);
     
     var socket = new WebSocket(url);
     
@@ -19,7 +19,7 @@ export function initWebsocketConnection(accountIds, dispatch, callback) {
     }
     
     socket.onmessage = wsMessage => {
-        console.debug("Received wsMessage: ", wsMessage);
+        console.log("Received wsMessage: ", wsMessage);
         
         dispatch(messageReceived(wsMessage));
     }
@@ -38,7 +38,7 @@ function messageReceived(wsMessage) {
 export function websocketMessageReceivedReducer(state, action) {
     switch(action.message.update_type) {
         case "new_statement_item":
-            console.debug("Processing new_statement_item ", action.message);
+            console.log("Processing new_statement_item ", action.message);
             
             var accountIdx = state.get('accounts').findIndex(
                 (value, index, iter) => value.getIn(['details', 'id']) === action.message.for_account_id
