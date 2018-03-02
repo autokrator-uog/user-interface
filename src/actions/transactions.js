@@ -52,10 +52,11 @@ export function deposit(amount, toAccount) {
 
     axios.post(url, payload)
       .then(function(response) {
-        return dispatch({
-        type: DEPOSIT_SUBMITTED,
-        timestamp: Date(),
-        deposit_info: payload
+          return dispatch({
+            type: DEPOSIT_SUBMITTED,
+            timestamp: Date(),
+            deposit_info: payload
+          });
       })
       .catch(function(error) {
           return dispatch({
@@ -78,10 +79,11 @@ export function withdraw(amount, fromAccount) {
     }
     axios.post(url, payload)
       .then(function(response) {
-        return dispatch({
-        type: WITHDRAW_SUBMITTED,
-        timestamp: Date(),
-        withdrawal_info: payload
+          return dispatch({
+            type: WITHDRAW_SUBMITTED,
+            timestamp: Date(),
+            withdrawal_info: payload
+          });
       })
       .catch(function(error) {
           return dispatch({
@@ -90,3 +92,4 @@ export function withdraw(amount, fromAccount) {
           });
       });
   }
+}
