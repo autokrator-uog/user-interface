@@ -5,7 +5,7 @@ import { Container, Menu } from 'semantic-ui-react';
 class Footer extends Component {
   render(){
     return(
-      <Menu fixed='bottom' inverted as='footer'>
+      <Menu fixed='bottom' inverted as='footer' fluid widths={4}>
         <Container textAlign='center' >
             <Menu.Item as='a' href='#'>Site Map</Menu.Item>
             <Menu.Item as='a' href='#'>Contact us</Menu.Item>

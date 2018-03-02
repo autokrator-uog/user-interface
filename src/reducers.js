@@ -10,8 +10,8 @@ import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions
 
 
 export const initialState = fromJS({
-    username: "",
-    password: "",
+    username: "ToddSteele",
+    password: "asd",
 
     accounts: [],
     currentlySelectedAccountIdx: 0,
@@ -24,17 +24,19 @@ export const initialState = fromJS({
 
 export function appReducers(state, action) {
   if (typeof state === 'undefined') {
-    console.debug("Initializing state to initialState: ", initialState);
+    console.log("Initializing state to initialState: ", initialState);
     return initialState
   }
 
-  console.debug(`Processing action of type: ${action.type}`, action)
+  console.log(`Processing action of type: ${action.type}`, action)
 
   switch (action.type) {
     case "USERNAME_INPUT":
       return state.set("username", action.username);
     case "PASSWORD_INPUT":
       return state.set("password", action.password);
+    case "ACCOUNT_SELECTION":
+      return state.set("currentlySelectedAccountIdx", action.AccountIdx);
 
     case INIT_VALID_RESPONSE:
       return initSuccessReducer(state, action);

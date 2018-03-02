@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Container, Table, Header, Segment, Divider } from 'semantic-ui-react';
+import { Container, Header, Segment} from 'semantic-ui-react';
 
-import Actions from './Actions';
+import "./AccountView.css"
 
 class AccountView extends Component {
   getStatement() {
     return this.props.account.get('statement')
   }
-  
+
   getBalance() {
     return this.props.account.getIn(['details', 'balance'])
   }
-  
+
   getAccountId() {
     return this.props.account.getIn(['details', 'id'])
   }
@@ -23,9 +23,9 @@ class AccountView extends Component {
       return(
           <Segment key={item.item} textAlign='left'>
               {item.note}
-              
-              <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red' }}>
-                  {item.amount} GBP
+
+              <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red', fontFamily: 'Roboto Mono, monospace'}}>
+                  £ {item.amount}
               </Header>
           </Segment>
       )
@@ -35,35 +35,19 @@ class AccountView extends Component {
   render(){
     return(
       <div>
-        <Container text style={{ marginTop: '2em', textAlign: 'center' }}>
-          <Header as='h1'>Account: {this.getAccountId()}</Header>
+        <div className='balanceView'>
+            <Segment clearing raised>
+                    <Header floated='left' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}>Balance:</Header>
+                    <Header floated='right' as='h1' style={{ fontFamily: 'Roboto Mono, monospace' }}> £ {this.getBalance()}</Header>
+            </Segment>
+        </div>
 
-          <Table>
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <Header as='h1'>Balance:</Header>
-                </Table.Cell>
-                <Table.Cell textAlign='right'>
-                  <Header as='h1'>{this.getBalance()} GBP</Header>
-                </Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
-          
-          <Actions accountid={this.getAccountId()} />
-          
-          <div style={{textAlign: 'left'}}>
-            <Header size='small'>Statement:</Header>
-          </div>
-          
-          <Divider />
-          
-          <Container>
-              {this.renderStatementItems()}
-          </Container>
-          
-        </Container>
+        <div className='statementView'>
+            <Container>
+                {this.renderStatementItems()}
+            </Container>
+        </div>
+
       </div>
 
     );

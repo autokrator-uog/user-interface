@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// import { Button, FormGroup, FormControl, ControlLabel, Alert } from "react-bootstrap";
 import { Form, Button, Message } from "semantic-ui-react";
 
 import "./Login.css";
@@ -48,7 +47,7 @@ class Login extends Component {
 
       this.onLogin(this.state.username);
     }
-    
+
     renderErrors() {
         return this.props.errors.map((error, idx) => {
           return (
@@ -60,43 +59,53 @@ class Login extends Component {
     }
 
     render() {
+
       return (
-        <div className="Login">
-          <Form onSubmit={this.handleSubmit}>
-            
-            {this.renderErrors()}
+        <div>
+            <div className="Login">
+                <Form onSubmit={this.handleSubmit} size="large">
 
-            <Form.Field>
-              <label>Username</label>
-              <Form.Input
-                type="username"
-                value={this.state.username}
-                onChange={this.handleUsernameInput}
-              />
-            </Form.Field>
+                  {this.renderErrors()}
 
-            <Form.Field>
-              <label>Password</label>
-              <Form.Input
-                value={this.state.password}
-                onChange={this.handlePasswordInput}
-                type="password"
-              />
-            </Form.Field>
+                  <Form.Field>
 
-            <Button disabled={!this.validateForm()} type="submit">
-              Login
-            </Button>
-            
-          </Form>
-        </div>
+                    <Form.Input
+                      type="username"
+                      placeholder='Username'
+                      icon='user'
+                      iconPosition='left'
+                      value={this.state.username}
+                      onChange={this.handleUsernameInput}
+
+                    />
+                  </Form.Field>
+
+                  <Form.Field>
+
+                    <Form.Input
+                      placeholder='Password'
+                      type="password"
+                      icon='lock'
+                      iconPosition='left'
+                      value={this.state.password}
+                      onChange={this.handlePasswordInput}
+
+                    />
+                  </Form.Field>
+
+                  <Button primary disabled={!this.validateForm()} type="submit">
+                    Login
+                  </Button>
+
+              </Form>
+            </div>
+          </div>
       );
     }
 }
 
 // reads from redux state and returns react props for the component
 const mapStateToProps = state => {
-  console.log(state);
   return {
     username: state.app.get('username'),
     password: state.app.get('password'),

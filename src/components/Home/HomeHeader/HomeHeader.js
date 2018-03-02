@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { Container, Header, Divider} from 'semantic-ui-react';
+import logo from './logo.png';
+
+import './HomeHeader.css';
 
 class HomeHeader extends Component {
   render(){
 
     return(
       <div>
-        <Container text>
-          <Header as='h1'>Welcome back <b>{this.props.username}</b>!</Header>
-          <Divider inverted section />
-        </Container>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">Welcome back {this.props.username}</h1>
+          </header>
+        </div>
       </div>
     );
   }

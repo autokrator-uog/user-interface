@@ -1,0 +1,12 @@
+.balanceView {
+  flex: 1;
+  padding-left: 20%;
+
+}
+
+.statementView {
+  flex: 1;
+  padding-top: 1%;
+  padding-left: 22%;
+  padding-right: 2%;
+}
