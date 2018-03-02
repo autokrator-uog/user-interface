@@ -90,4 +90,3 @@ export function withdraw(amount, fromAccount) {
           });
       });
   }
-}
