@@ -56,7 +56,7 @@ export function deposit(amount, toAccount) {
         type: DEPOSIT_SUBMITTED,
         timestamp: Date(),
         deposit_info: payload
-      });
+      })
       .catch(function(error) {
           return dispatch({
               type: DEPOSIT_ERROR,
@@ -82,7 +82,7 @@ export function withdraw(amount, fromAccount) {
         type: WITHDRAW_SUBMITTED,
         timestamp: Date(),
         withdrawal_info: payload
-      });
+      })
       .catch(function(error) {
           return dispatch({
               type: WITHDRAW_ERROR,
