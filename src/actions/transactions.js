@@ -63,7 +63,7 @@ export function deposit(amount, toAccount) {
               error: error
           });
       });
-  };
+  }
 }
 export function withdraw(amount, fromAccount) {
   return function (dispatch) {
@@ -89,5 +89,5 @@ export function withdraw(amount, fromAccount) {
               error: error
           });
       });
-  };
+  }
 }
