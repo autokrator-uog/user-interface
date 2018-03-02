@@ -17,6 +17,8 @@ export const initialState = fromJS({
     currentlySelectedAccountIdx: 0,
 
     pendingTransactions: [],
+    pendingWithdrawals: [],
+    pendingDeposits: [],
 
     websocketConnection: null,
     errors: []
@@ -54,12 +56,12 @@ export function appReducers(state, action) {
       return state.update("errors", list => list.push(action.error));
 
     case DEPOSIT_SUBMITTED:
-      return state.update("pendingDeposit", list => list.push(action.deposit_info));
+      return state.update("pendingDeposits", list => list.push(action.deposit_info));
     case DEPOSIT_ERROR:
       return state.update("errors", list => list.push(action.error));
 
     case WITHDRAW_SUBMITTED:
-      return state.update("pendingWithdrawl", list => list.push(action.withdrawal_info));
+      return state.update("pendingWithdrawals", list => list.push(action.withdrawal_info));
     case WITHDRAW_ERROR:
       return state.update("errors", list => list.push(action.error));
 
