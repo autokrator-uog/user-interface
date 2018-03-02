@@ -3,9 +3,6 @@ import axios from 'axios';
 import { BFAF_BASE_URL } from '../bfaf';
 
 export const TRANSACTION_SUBMITTED = 'TRANSACTION_SUBMITTED';
-export const TRANSACTION_ERROR = 'TRANSACTION_ERROR';
-
-export const TRANSACTION_SUBMITTED = 'TRANSACTION_SUBMITTED';
 export const DEPOSIT_SUBMITTED = 'DEPOSIT_SUBMITTED';
 export const WITHDRAW_SUBMITTED = 'WITHDRAW_SUBMITTED';
 
@@ -41,7 +38,7 @@ export function sendMoney(fromAccount, toAccount, amount) {
 }
 
 // example of a thunk using the redux-thunk middleware
-export function deposit(amount) {
+export function deposit(amount, toAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
 
@@ -49,7 +46,8 @@ export function deposit(amount) {
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
-        'amount': amount
+        'amount': amount,
+        'toAccount': toAccount
     }
 
     axios.post(url, payload)
@@ -57,7 +55,7 @@ export function deposit(amount) {
         return dispatch({
         type: DEPOSIT_SUBMITTED,
         timestamp: Date(),
-        amount: Math.abs(amount)
+        deposit_info: payload
       });
       .catch(function(error) {
           return dispatch({
@@ -67,7 +65,7 @@ export function deposit(amount) {
       });
   };
 }
-export function withdraw(amount) {
+export function withdraw(amount, fromAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
 
@@ -75,14 +73,15 @@ export function withdraw(amount) {
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
-        'amount': amount
+        'amount': amount,
+        'fromAccount': fromAccount
     }
     axios.post(url, payload)
       .then(function(response) {
         return dispatch({
         type: WITHDRAW_SUBMITTED,
         timestamp: Date(),
-        amount: Math.abs(amount)
+        withdrawal_info: payload
       });
       .catch(function(error) {
           return dispatch({
