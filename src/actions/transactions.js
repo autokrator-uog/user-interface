@@ -46,8 +46,8 @@ export function deposit(amount, toAccount) {
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
-        'amount': amount,
-        'toAccount': toAccount
+        'amount': Math.abs(amount),
+        'toAccount': parseInt(toAccount, 10)
     }
 
     axios.post(url, payload)
@@ -74,8 +74,8 @@ export function withdraw(amount, fromAccount) {
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
-        'amount': amount,
-        'fromAccount': fromAccount
+        'amount': Math.abs(amount),
+        'fromAccount': parseInt(fromAccount, 10)
     }
     axios.post(url, payload)
       .then(function(response) {
