@@ -70,7 +70,7 @@ export function withdraw(amount, fromAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
 
-    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/withdraw`;
+    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/withdrawal`;
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
