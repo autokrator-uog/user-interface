@@ -27,7 +27,8 @@ class Withdrawal extends Component {
       event.preventDefault();
 
       this.props.sendTransaction(
-          this.state.amount // amount
+          this.state.amount, // amount
+          this.props.accountid //acount ID
       )
 
   }
@@ -74,8 +75,8 @@ const mapStateToProps = state => {
 // allows the component to perform actions
 const mapDispatchToProps = dispatch => {
   return {
-      sendTransaction: (amount) => {
-          dispatch(withdraw(amount));
+      sendTransaction: (amount, accountid) => {
+          dispatch(withdraw(amount,accountid));
       }
   }
 }
