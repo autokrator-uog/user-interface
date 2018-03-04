@@ -3,8 +3,12 @@ import axios from 'axios';
 import { BFAF_BASE_URL } from '../bfaf';
 
 export const TRANSACTION_SUBMITTED = 'TRANSACTION_SUBMITTED';
-export const TRANSACTION_ERROR = 'TRANSACTION_ERROR';
+export const DEPOSIT_SUBMITTED = 'DEPOSIT_SUBMITTED';
+export const WITHDRAW_SUBMITTED = 'WITHDRAW_SUBMITTED';
 
+export const TRANSACTION_ERROR = 'TRANSACTION_ERROR';
+export const DEPOSIT_ERROR = 'DEPOSIT_ERROR';
+export const WITHDRAW_ERROR = 'WITHDRAW_ERROR';
 
 export function sendMoney(fromAccount, toAccount, amount) {
     return function(dispatch) {
@@ -33,25 +37,59 @@ export function sendMoney(fromAccount, toAccount, amount) {
     }
 }
 
-
 // example of a thunk using the redux-thunk middleware
-export function deposit(amount) {
+export function deposit(amount, toAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
-    return dispatch({
-      type: 'DEPOSIT',
-      timestamp: Date(),
-      amount: Math.abs(amount)
-    });
-  };
+
+    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/deposit`;
+    console.debug(`Sending POST request to ${url}`);
+
+    var payload = {
+        'amount': Math.abs(amount),
+        'toAccount': parseInt(toAccount, 10)
+    }
+
+    axios.post(url, payload)
+      .then(function(response) {
+          return dispatch({
+            type: DEPOSIT_SUBMITTED,
+            timestamp: Date(),
+            deposit_info: payload
+          });
+      })
+      .catch(function(error) {
+          return dispatch({
+              type: DEPOSIT_ERROR,
+              error: error
+          });
+      });
+  }
 }
-export function withdraw(amount) {
+export function withdraw(amount, fromAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
-    return dispatch({
-      type: 'WITHDRAW',
-      timestamp: Date(),
-      amount: Math.abs(amount)
-    });
-  };
+
+    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/withdrawal`;
+    console.debug(`Sending POST request to ${url}`);
+
+    var payload = {
+        'amount': Math.abs(amount),
+        'fromAccount': parseInt(fromAccount, 10)
+    }
+    axios.post(url, payload)
+      .then(function(response) {
+          return dispatch({
+            type: WITHDRAW_SUBMITTED,
+            timestamp: Date(),
+            withdrawal_info: payload
+          });
+      })
+      .catch(function(error) {
+          return dispatch({
+              type: WITHDRAW_ERROR,
+              error: error
+          });
+      });
+  }
 }

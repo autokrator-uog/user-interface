@@ -27,7 +27,8 @@ class Deposit extends Component {
       event.preventDefault();
 
       this.props.sendTransaction(
-          this.state.amount // amount
+          this.state.amount, // amount
+          this.props.accountid // account ID
       )
 
   }
@@ -74,8 +75,8 @@ const mapStateToProps = state => {
 // allows the component to perform actions
 const mapDispatchToProps = dispatch => {
   return {
-      sendTransaction: (amount) => {
-          dispatch(deposit(amount));
+      sendTransaction: (amount, accountid) => {
+          dispatch(deposit(amount,accountid));
       }
   }
 }

@@ -6,7 +6,7 @@ import { initSuccessReducer, initFailReducer, initUserNotFoundReducer } from './
 import { WEBSOCKET_MESSAGE_RECEIVED } from './actions/init/websocket';
 import { websocketMessageReceivedReducer } from './actions/init/websocket';
 
-import { TRANSACTION_SUBMITTED, TRANSACTION_ERROR } from './actions/transactions';
+import { TRANSACTION_SUBMITTED, DEPOSIT_SUBMITTED, WITHDRAW_SUBMITTED, TRANSACTION_ERROR, DEPOSIT_ERROR, WITHDRAW_ERROR } from './actions/transactions';
 
 
 export const initialState = fromJS({
@@ -17,6 +17,8 @@ export const initialState = fromJS({
     currentlySelectedAccountIdx: 0,
 
     pendingTransactions: [],
+    pendingWithdrawals: [],
+    pendingDeposits: [],
 
     websocketConnection: null,
     errors: []
@@ -51,6 +53,16 @@ export function appReducers(state, action) {
     case TRANSACTION_SUBMITTED:
       return state.update("pendingTransactions", list => list.push(action.transaction_info));
     case TRANSACTION_ERROR:
+      return state.update("errors", list => list.push(action.error));
+
+    case DEPOSIT_SUBMITTED:
+      return state.update("pendingDeposits", list => list.push(action.deposit_info));
+    case DEPOSIT_ERROR:
+      return state.update("errors", list => list.push(action.error));
+
+    case WITHDRAW_SUBMITTED:
+      return state.update("pendingWithdrawals", list => list.push(action.withdrawal_info));
+    case WITHDRAW_ERROR:
       return state.update("errors", list => list.push(action.error));
 
     default:
