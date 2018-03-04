@@ -42,7 +42,7 @@ export function deposit(amount, toAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
 
-    var url = `${window.location.protocol}//${BFAF_BASE_URL}/accounts/deposit`;
+    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/deposit`;
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
@@ -70,7 +70,7 @@ export function withdraw(amount, fromAccount) {
   return function (dispatch) {
     // thunks allow for pre-processing actions, calling apis, and dispatching multiple actions
 
-    var url = `${window.location.protocol}//${BFAF_BASE_URL}/accounts/withdraw`;
+    var url = `${window.location.protocol}//${BFAF_BASE_URL}/transaction/withdraw`;
     console.debug(`Sending POST request to ${url}`);
 
     var payload = {
