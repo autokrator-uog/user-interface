@@ -1,8 +1,24 @@
 .account{
-  padding-left: 28%;
+  padding-bottom: 3%;
 }
 .sidePanel {
   flex: 1;
   padding-right: 20%;
   padding-left: 0%;
+}
+
+@media (max-width:1000px){
+
+  .sidePanel {
+    flex: 1;
+    padding-right: 0%;
+    padding-left: 0%;
+  }
+
+
+  .ui.column.grid>[class*="five wide"].column, .ui.grid>.column.row>[class*="five wide"].column, .ui.grid>.row>[class*="five wide"].column, .ui.grid>[class*="five wide"].column {
+    width: 35%!important;
+    padding-right: 0;
+  }
+
 }

@@ -10,7 +10,7 @@ class Withdrawal extends Component {
     super(props);
 
     this.state = {
-        amount: null,
+        amount: '',
     }
   }
 

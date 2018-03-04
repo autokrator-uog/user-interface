@@ -19,9 +19,6 @@ class SidePanel extends Component {
       <div className="sidePanel">
         <Container>
           <Segment clearing>
-
-
-
             <div className="account">
               <DropDown />
             </div>

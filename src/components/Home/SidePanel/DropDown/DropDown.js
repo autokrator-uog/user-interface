@@ -24,17 +24,14 @@ class DropDown extends Component {
   render(){
     return(
       <div>
-      <Grid columns={2}>
-        <Grid.Column>
           <Dropdown
+            fluid
             selection
             placeholder='Choose an option'
             options={this.props.account_choices}
             onChange={this.handleChange}
             value={this.props.AccountIdx}
           />
-        </Grid.Column>
-      </Grid>
       </div>
     );
   }

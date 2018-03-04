@@ -22,11 +22,15 @@ class AccountView extends Component {
       var item = it.toObject();
       return(
           <Segment key={item.item} textAlign='left'>
-              {item.note}
 
               <Header floated='right' as='h3' style={{ color: item.amount >= 0 ? 'green' : 'red', fontFamily: 'Roboto Mono, monospace'}}>
                   £ {item.amount}
               </Header>
+
+
+            <div className='fixOverflow'>
+              {item.note}
+            </div>
           </Segment>
       )
     })

@@ -10,7 +10,7 @@ class Deposit extends Component {
     super(props);
 
     this.state = {
-        amount: null,
+        amount: '',
     }
   }
 
